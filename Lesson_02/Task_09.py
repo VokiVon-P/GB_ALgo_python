@@ -21,7 +21,7 @@ def sum_digit(num):
 outSum = 0
 outNum = 0
 while True:
-    n = int(input("Введитите натуральное число n ( целое больше 0) 0 - конец ввода: "))
+    n = int(input("Введите натуральное число n ( целое больше 0) 0 - конец ввода: "))
     if n == 0:
         break
 
