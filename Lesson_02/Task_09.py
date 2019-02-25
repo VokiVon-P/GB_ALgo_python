@@ -4,17 +4,19 @@ __author__ = "Павел Новиков (aka VokiVon)"
 Вывести на экран это число и сумму его цифр.
 """
 
-def Sum_Digit( num ):
+
+def sum_digit(num):
     #################
     # Возвращает сумму входящих цифр числа аргумента
 
     a = num
-    sum = 0;
+    sum_d = 0
     while a > 0:
         b = a % 10
-        sum += b
+        sum_d += b
         a = a // 10
-    return sum
+    return sum_d
+
 
 outSum = 0
 outNum = 0
@@ -23,11 +25,9 @@ while True:
     if n == 0:
         break
 
-    s = Sum_Digit(n)
+    s = sum_digit(n)
     if outSum < s:
         outSum = s
         outNum = n
 
 print(f"Максимальная сумма цифр = {outSum} у числа {outNum}")
-
-
