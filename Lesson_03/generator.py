@@ -16,4 +16,12 @@ def gen_array():
     """
     return [random.randint(min_item, max_item) for _ in range(size)]
 
+
+def gen_matrix():
+    """
+    :return: сгенерированную матрицу по заданным параметрам констант
+    """
+    return [gen_array() for _ in range(size)]
+
+
 # if __name__ == "__main__":
