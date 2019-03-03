@@ -4,13 +4,16 @@ __author__ = 'Павел Новиков (aka VokiVon)'
 """
 import random
 
-SIZE = 10
-MIN_ITEM = -100
-MAX_ITEM = 100
+# сделаны переменными для возможности переопределения в модулях
+size = 20
+min_item = -100
+max_item = 100
 
 
 def gen_array():
     """
     :return: сгенерированный массив по заданным параметрам констант
     """
-    return [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
+    return [random.randint(min_item, max_item) for _ in range(size)]
+
+# if __name__ == "__main__":
