@@ -13,11 +13,11 @@ LAST_DIGIT = 9
 
 def check_digit(range_, digit_check):
     """
-    считает кол-во кратных числе в диапазоне
+    считает кол-во кратных чисел в диапазоне
     + доп проверка входных параметров: (0 и 1) исключаются
     :return: кол-во кратных чисел
     """
-    if digit_check in (0, 1):
+    if digit_check in {0, 1}:
         return 0
 
     out_count = 0
