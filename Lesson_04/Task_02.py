@@ -80,6 +80,25 @@ def erat_02(n):
 
 
 
+def erat_03(n):
+    """
+    Алгоритм - пока не придумал
+    :param n: число до которого нужно искать простые числа
+    :return: массив простых чисел
+    """
+    FIRST = 2
+    arr_ = [FIRST]
+    num = FIRST
+    idx = 1
+    while True:
+        idx += 1
+        num = idx + idx - 1
+        if num > n:
+            break
+        arr_.append(num)
+
+    res = arr_
+    return res
 
 
 #test_erat(erat_01)
@@ -87,8 +106,4 @@ def erat_02(n):
 
 """
 py -m timeit -n 100 -s "import Task_02" "Task_02.erat_02(100)"
-"""
-
-"""
-алгоритм erat_01 - по полученным данным гораздо быстрее
 """
