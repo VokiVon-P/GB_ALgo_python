@@ -56,7 +56,12 @@ def hex_to_str(hex_):
 
 
 def str_to_hex(hex_str):
-    return [i for i in hex_str]
+    """
+    преобразует сроку в список 16x числа
+    :param hex_str: исходная строка
+    :return: список 16x числа
+    """
+    return list(hex_str.upper())
 
 
 def dec_hex_plus_help(dec1, dec2, dec_mem=0):
