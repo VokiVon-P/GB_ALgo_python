@@ -31,8 +31,8 @@ for i in range(count_r):
     # ввод квартальных прибылей
     data_q = list()
     for j in range(4):
-        # data_q.append(int(input(f"Введите прибыль {j+1} квартала: ")))
-        data_q.append(random.randint(10, 100))
+        data_q.append(int(input(f"Введите прибыль {j+1} квартала: ")))
+        # data_q.append(random.randint(10, 99))
     sum_y = sum(data_q)
     sum_all += sum_y
     rep = Report(r_name, data_q, sum_y)
@@ -44,9 +44,19 @@ print(*reports, sep='\n')
 print("\n")
 print(f"Общая прибыль за год всех предприятий: {sum_all}")
 print(f"Средняя годовая прибыль: {avg_r}")
-# генерируем списки выше и ниже средней (можно и в один цикл с двумя условиями сделать)
-up_list = [item.title for item in reports if item.year_sum > avg_r]
-low_list = [item.title for item in reports if item.year_sum < avg_r]
+
+# проходим за один раз и используем разное добавление элементов в список
+up_list = []
+low_list = []
+for item in reports:
+    if item.year_sum > avg_r:
+        up_list.append(item.title)
+    elif item.year_sum < avg_r:
+        low_list += [item.title]
+
+# up_list = [item.title for item in reports if item.year_sum > avg_r]
+# low_list = [item.title for item in reports if item.year_sum < avg_r]
+
 # вывод результатов
 print("Предприятия с прибылью выше средней: ", end="")
 print(*up_list, sep='\t\t')
