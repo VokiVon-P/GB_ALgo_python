@@ -13,9 +13,11 @@ __author__ = 'Павел Новиков (aka VokiVon)'
 
 # Решение с использованием collections
 
-reports = {}
-sum_r = 0
+Report = collections.namedtuple('Report', ['title', 'q_4', 'year_sum'])
+
+reports = collections.deque()
 avg_r = 0
+sum_all = 0
 
 count_r = int(input(f"Введите количество предприятий: "))
 # проверка на положительное кол-во
@@ -29,20 +31,22 @@ for i in range(count_r):
     # ввод квартальных прибылей
     data_q = list()
     for j in range(4):
-        data_q.append(int(input(f"Введите прибыль {j+1} квартала: ")))
-        #data_q.append(random.randint(10, 100))
+        # data_q.append(int(input(f"Введите прибыль {j+1} квартала: ")))
+        data_q.append(random.randint(10, 100))
+    sum_y = sum(data_q)
+    sum_all += sum_y
+    rep = Report(r_name, data_q, sum_y)
+    reports.append(rep)
 
-    sum_r += sum(data_q)
-    reports[r_name] = data_q
-
-avg_r = sum_r/count_r
+avg_r = sum_all / count_r
 print("\nВведенные данные:")
-print(reports)
-print(f"Общая прибыль за год всех предприятий: {sum_r}")
+print(*reports, sep='\n')
+print("\n")
+print(f"Общая прибыль за год всех предприятий: {sum_all}")
 print(f"Средняя годовая прибыль: {avg_r}")
 # генерируем списки выше и ниже средней (можно и в один цикл с двумя условиями сделать)
-up_list = [item for item in reports.keys() if sum(reports[item]) > avg_r]
-low_list = [item for item in reports.keys() if sum(reports[item]) < avg_r]
+up_list = [item.title for item in reports if item.year_sum > avg_r]
+low_list = [item.title for item in reports if item.year_sum < avg_r]
 # вывод результатов
 print("Предприятия с прибылью выше средней: ", end="")
 print(*up_list, sep='\t\t')
