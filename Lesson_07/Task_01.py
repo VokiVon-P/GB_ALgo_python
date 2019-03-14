@@ -29,8 +29,8 @@ def bubble_sort_reverse(arr_):
     """
     n = 1
     while n < len(arr_):
-        # на уроке стояла 1, заменил на n, т.к. при каждом проходе макс элемент уже на месте
-        for i in range(len(arr_) - n):  # заменил на n
+
+        for i in range(len(arr_) - 1):  # заменил на n
             if arr_[i] < arr_[i + 1]:   # изменил знак сравнения, чтобы всплывал минимальный элемент
                 arr_[i], arr_[i + 1] = arr_[i + 1], arr_[i]
         n += 1
@@ -38,8 +38,64 @@ def bubble_sort_reverse(arr_):
         # print(arr_)
     return arr_
 
+# первая версия оптимизации
+# def ext_bubble_sort_reverse(arr_): ver 01
+#     """
+#     Сортировка пузырьком, попытка улучшить )))
+#
+#     :param arr_: сортируемый массив
+#     :return: отсортированный массив
+#     """
+#     n = 1
+#     # флаг - был ли хотя бы один обмен при проходе
+#     # позволяет убрать лишние проходы если уже отсортирован
+#     is_swapped = True
+#     while is_swapped:
+#         is_swapped = False
+#         # на уроке стояла 1, заменил на n, т.к. при каждом проходе макс элемент уже на месте
+#         for i in range(len(arr_) - n):  # заменил на n
+#             if arr_[i] < arr_[i + 1]:   # изменил знак сравнения, чтобы всплывал минимальный элемент
+#                 arr_[i], arr_[i + 1] = arr_[i + 1], arr_[i]
+#                 is_swapped = True
+#         n += 1
+#
+#         # print(arr_)
+#     return arr_
+
+def ext_bubble_sort_reverse(arr_):
+    """
+    Сортировка пузырьком, попытка улучшить )))
+
+    :param arr_: сортируемый массив
+    :return: отсортированный массив
+    """
+    # запоминаем индекс последнего обмена в ряду
+    # при следующем проходе идем только до него, тк справа уже все отсортировано
+    # изначально равен последнему индексу
+    idx_swp = len(arr_) - 1
+
+    # флаг - был ли хотя бы один обмен при проходе
+    # позволяет убрать лишние проходы если уже отсортирован
+    is_swapped = True
+    while is_swapped:
+        is_swapped = False
+        # на уроке стояла 1, заменил на n, т.к. при каждом проходе макс элемент уже на месте
+        for i in range(idx_swp):  # заменил на n
+            if arr_[i] < arr_[i + 1]:   # изменил знак сравнения, чтобы всплывал минимальный элемент
+                arr_[i], arr_[i + 1] = arr_[i + 1], arr_[i]
+                idx_swp = i  # запоминаем индекс последнего обмена в ряду
+                is_swapped = True
+
+        # print(arr_)
+    return arr_
+
+# =================
+# вывод результатов
 
 array = gen_array()
 print(array)
 print(bubble_sort_reverse(array))
 
+random.shuffle(array)
+print(array)
+print(ext_bubble_sort_reverse(array))
