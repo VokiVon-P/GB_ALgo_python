@@ -18,29 +18,9 @@ def gen_array():
     """
     :return: сгенерированный массив по заданным параметрам констант
     """
-    # return [random.uniform(min_item, max_item) for _ in range(size)]
-    arr_ = [37.136359214314595, 34.41621511169794, 30.42571573354757, 27.774907263395654, 21.2641191518764, 20.395197995460432, 14.59299121806877, 5.598487776086833, 2.687076495847309, 1.0163188945189097]
-    random.shuffle(arr_)
-    return arr_
+    return [random.uniform(min_item, max_item) for _ in range(size)]
 
 
-
-def bubble_sort_reverse(arr_):
-    """
-    Сортировка пузырьком, как на уроке
-    :param arr_: сортируемый массив
-    :return: отсортированный массив
-    """
-    n = 1
-    while n < len(arr_):
-        # на уроке стояла 1, заменил на n, т.к. при каждом проходе макс элемент уже на месте
-        for i in range(len(arr_) - n):  # заменил на n
-            if arr_[i] < arr_[i + 1]:   # изменил знак сравнения, чтобы всплывал минимальный элемент
-                arr_[i], arr_[i + 1] = arr_[i + 1], arr_[i]
-        n += 1
-
-        # print(arr_)
-    return arr_
 
 
 def merge_arrays(arr_, start1, end1, start2, end2):
@@ -86,8 +66,15 @@ def merge_arrays(arr_, start1, end1, start2, end2):
 
 
 def merge_sort(arr_, first, last):
+    """
+    Рекурсивное разбитие массива на подмассивы и сортировка их через слияние
+    :param arr_:
+    :param first:
+    :param last:
+    :return:
+    """
 
-    if (last - first) <= 1:
+    if first >= last:
         return
 
     middle = (last + first) // 2
@@ -96,9 +83,6 @@ def merge_sort(arr_, first, last):
     return merge_arrays(arr_, first, middle, middle + 1, last)
 
 
-array = gen_array()
-print(array)
-print(bubble_sort_reverse(array))
 
 array = gen_array()
 print(array)
