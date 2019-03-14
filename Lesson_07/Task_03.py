@@ -14,7 +14,7 @@ import random
 """
 
 # сделаны переменными для возможности переопределения в модулях
-size_m = 3
+size_m = 5  # парамет m для формулы 2m+1
 min_item = -100  # -100 включительно
 max_item = 100    # 100 не включая
 
@@ -22,7 +22,34 @@ def gen_array():
     """
     :return: сгенерированный массив по заданным параметрам констант
     """
+    # return [8, 18, -46, 11, 20, 36, -13]
     return [random.randint(min_item, max_item) for _ in range(size_m*2 + 1)]
+
+
+def easy_median(arr_):
+    """
+    Поиск медианы простым перебором
+    :param arr_: массив
+    :return: медиана
+    """
+    size = len(arr_)
+    res = None
+    for i in range(size):       # поиск медианы
+        #  счетчики сравнения значений
+        hi = 0
+        lo = 0
+        for j in range(size):
+            if arr_[j] != arr_[i]:
+                if arr_[j] > arr_[i]:
+                    hi += 1
+                else:
+                    lo += 1
+
+        if hi == lo:
+            res = arr_[i]
+            break
+
+    return res
 
 
 def quick_median(arr_):
@@ -34,8 +61,8 @@ def quick_median(arr_):
 
     # проверим на возможность найти медиану
     if len(arr_) % 2 == 1:
+        # именно 2-й параметр idx определяет что мы хотим найти медиану ))
         return select_median(arr_, len(arr_) / 2)
-
 
 
 def select_median(arr_, idx):
@@ -63,7 +90,11 @@ def select_median(arr_, idx):
         return select_median(large, idx - len(small) - len(pivots))
 
 
+# =================
+# вывод результатов
+
 array = gen_array()
 print(array)
-print(quick_median(array))
+print(easy_median(array))
 print(array)
+print(quick_median(array))

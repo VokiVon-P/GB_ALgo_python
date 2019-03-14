@@ -89,6 +89,7 @@ def ext_bubble_sort_reverse(arr_):
         # print(arr_)
     return arr_
 
+
 # =================
 # вывод результатов
 

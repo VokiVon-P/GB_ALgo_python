@@ -83,6 +83,8 @@ def merge_sort(arr_, first, last):
     return merge_arrays(arr_, first, middle, middle + 1, last)
 
 
+# =================
+# вывод результатов
 
 array = gen_array()
 print(array)
