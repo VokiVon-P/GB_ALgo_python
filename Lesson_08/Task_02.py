@@ -6,8 +6,13 @@ __author__ = 'Павел Новиков (aka VokiVon)'
 
 import collections
 
-collect = collections.Counter("мама мыла раму")
-print(collect)
+cnt_ = collections.Counter("мама мыла раму")
+print(cnt_)
+
+for i in cnt_.keys():
+    print(i)
+    print(cnt_[i])
+
 
 
 
